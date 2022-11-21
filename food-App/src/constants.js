@@ -1,0 +1,1 @@
+export const ip = "https://backend-app-4.herokuapp.com";
