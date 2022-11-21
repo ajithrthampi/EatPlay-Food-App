@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useReducer} from 'react'
+import React, {useState, useEffect, useReducer, useCallback} from 'react'
 import {MdOutlineKeyboardBackspace} from 'react-icons/md'
 import {motion} from "framer-motion"
 import {RiRefreshFill} from "react-icons/ri"
@@ -61,13 +61,17 @@ const CartContainer = (item) => {
 
     }, [
         // tot,
-        // cartProducts
+        reducerValue
     ])
 
     useEffect(() => {
         setUid(user?.uid)
         // console.log("", uid);
     }, [])
+
+   
+    
+    
 
     // init service
     const db = getFirestore()
@@ -163,7 +167,21 @@ const CartContainer = (item) => {
         // dispatch({type: actionType.SET_CARTITEMS, cartItems: []});
         // localStorage.setItem("cartItems", JSON.stringify([]))
 
-        await deleteDoc(doc(db, "userCart","6QqQqf2memNkcUCpPPqq" ));
+        const uidEmail = localStorage.getItem("email")
+
+        const collectionRef = collection(db, "userCart");
+        const q = query(collectionRef, where("email", "==", uidEmail));
+        const snapShot = await getDocs(q)
+        
+        const result = snapShot.docs.map((doc) => ({ ...doc.data(), id: doc.id}))
+
+        result.forEach(async (result) => {
+            const docRef = doc(db, "userCart", result.id);
+            await deleteDoc(docRef)
+        })
+        console.log("Clear cart data .....");
+
+        forceUpdate()
     }
 
     // charging payment

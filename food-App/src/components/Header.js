@@ -167,7 +167,6 @@ const Header = (data) => {
               <div className=' absolute -top-2 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
                 <p className='text-xs text-white font-semibold'>{productNo.length}</p>
               </div>
-
             )}
 
           </motion.div>
@@ -190,7 +189,6 @@ const Header = (data) => {
             alt="profileee"
             onClick={avatar}
           />}
-           
             {
               isMenu ? (
                 < motion.div
@@ -220,7 +218,6 @@ const Header = (data) => {
 
       {/* Mobile */}
       <div className='flex items-center justify-between md:hidden h-full w-full'>
-
 
         <motion.div whileTap={{ scale: 0.6 }} className='relative flex items-center justify-center'
           onClick={showCart}

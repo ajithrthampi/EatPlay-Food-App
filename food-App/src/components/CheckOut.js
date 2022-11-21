@@ -16,7 +16,7 @@ import {HiVariable} from 'react-icons/hi'
 import Modal from './Modal'
 import {ip} from "../constants"
 import {db} from '../firebase'
-import {doc, setDoc} from 'firebase/firestore'
+import {collection, deleteDoc, doc, getDocs, query, setDoc, where} from 'firebase/firestore'
 toast.configure()
 
 
@@ -106,11 +106,17 @@ const CheckOut = () => {
     console.log("Cart Productsm mmmmmmmmmmmmmmmm", cartProducts);
 
     const orderedList = async () => {
-        // await setDoc(doc(db, "orderList", cartProducts.id), {
-        //     ...cartProducts,
-        //     email
-        // });
-        // console.log("New Firestore created");
+        const uidEmail = localStorage.getItem("email")
+            const collectionRef = collection(db, "userCart");
+            const q = query(collectionRef, where("email", "==", uidEmail));
+            const snapShot =  await getDocs(q)
+            
+            const result = snapShot.docs.map((doc) => ({ ...doc.data(), id: doc.id}))
+    
+            result.forEach(async (result) => {
+                const docRef = doc(db, "userCart", result.id);
+                await deleteDoc(docRef)
+            }) 
     }
 
 
@@ -148,7 +154,7 @@ const CheckOut = () => {
             navigate('/login')
             toast.success('Your order has been placed Successfully', {
                 positioon: 'top-right',
-                autoClose: 2000,
+                autoClose: 1000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: false,
@@ -157,8 +163,8 @@ const CheckOut = () => {
             })
             console.log("Success update toastyfy")
 
-            //////////////////////////////////////////////////
-            ///////////////////////////////////////////////
+           
+            console.log("Delete cart items...");
         } else {
             alert('something went wrong in chekout')
         }
@@ -204,74 +210,7 @@ const CheckOut = () => {
                     <h1 className='text-lg font-bold text-textColor'>Checkout</h1>
 
 
-                    {/* <div className='grid grid-cols-2 gap-4 py-5 '> */}
-                        {/*1st Column  */}
-                        {/* <div className=''>  
-                            <hr className="my-6 h-[2px] bg-gray-400  dark:bg-gray-900 border "/> First Card  */}
-                            {/* <div className="bg-white shadow-lg  m-8 p-8 flex md:bg-orange-500 xl:bg-white border rounded-3xl  border-gray-300"> */}
-
-                                {/* 2nd box inner 1st grid */}
-                                {/* <div className=' grid-cols-3'>
-                                <div className="col-span-2 "> */}
-                                {/* <div className=" sm:w-2/3">
-
-                                    <div className='flex gap-4'>
-                                        <GoLocation className='text-blue-400 text-xl'/>
-                                        <h3 className='text-sm font-bold pb-6 '>Shipping Address</h3>
-                                        <h3 className=' text-textColor text>Home'></h3>
-                                    </div>
-                                    <div className=''>
-                                        <h3 className="text-orange text-sm font-semibold pt-1">Ajith R Thampi</h3>
-                                        <p className='text-sm pt-1'>9513757414</p>
-                                        <p className="text-grey-dark font-thin text-sm leading-normal pt-2 ">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                                        </p>
-                                        <div className='pt-2'>
-                                            <button className="px-4  pt-1 text-bl border-lg border border-blue-500 rounded-lg text-blue-400 p ">Edit Address</button>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div className=''></div>
-                                </div> */}
-                            {/* </div> */}
-
-                            {/* <div className="bg-white shadow-lg  m-8 p-8 flex md:bg-orange  rounded-3xl   border border-gray-300"> */}
-
-                                {/* 1st box inner 1st grid */}
-
-                                {/* <div className=' grid grid-cols-3 '>
-                                    <div className="col-span- "> */}
-                                        {/* <div className=" sm:w-2/3"> */}
-
-                                        {/* <div className='flex gap-4'>
-                                            <MdOutlineLocalShipping className='text-blue-400 text-xl'/>
-                                            <h3 className='text-sm font-bold pb-6 '>Shipment
-                                            </h3>
-                                        </div>
-
-                                        <div className=" flex gap-">
-                                            <img className="rounded-xl md:border-white md:border-solid md:border-4 w-150"
-                                                src={f5}/>
-                                            <div className='py-4 '>
-                                                <h3 className="text-orange text-sm font-semibold ">Grapes</h3>
-                                                <p className='text-sm'>1 item -
-                                                    <span className='text-green-500'>$</span>15</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
-
-
-                                {/*1st box Inner 2nd grid  */}
-                                {/* <div className='col-span-2 gap-5 space-y-10 pt-16 '> */}
-
-                                    {/* <button className="px-4 text-bl border-lg border border-blue-500 rounded-lg text-blue-400 pt-1 ">Track</button> */}
-                                    {/* <button className="px-6 text-bl border-lg border border-blue-500 rounded-lg text-blue-400 pt-1">Edit</button> */} 
-                                    {/* </div> */}
-                            {/* </div> */}
-                        {/* </div> */}
+                  
 
                         {/* 2nd Column */}
 
