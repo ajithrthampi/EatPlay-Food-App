@@ -145,7 +145,6 @@ const Header = (data) => {
 
             </motion.li>
             {/* <motion.li whileTap={{ scale: 0.6 }} className="flex-base text-textColor hover:text-yellow-500 duration-100 transition-all ease-in-out cursor-pointer"
-
               onClick={() => setIsMenu(false)}
             >Service</motion.li> */}
           </motion.ul>

@@ -28,7 +28,7 @@ import WishList from './components/WishList';
 import CheckOut from './components/CheckOut';
 import Details from './components/Details';
 
-import Simple from './pages/simple';
+// import Simple from './pages/simple';
 import CouponList from './pages/CouponList';
 import Profilee from './components/Profilee';
 import LandingPage from './components/LandingPage';
@@ -54,7 +54,7 @@ const App = () => {
        <AnimatePresence>
        <Router>
            <Routes>
-           <Route  path="/" element={<LandingPage />} />
+            <Route  path="/" element={<LandingPage />} />
             <Route  path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup/>} />
             <Route path ="/dashboard/*" element={<Dashboard/>} />
@@ -66,7 +66,7 @@ const App = () => {
             <Route path ="/wishlist" element={<WishList />} />
             <Route path ="/checkout" element={<CheckOut />} />
             <Route path ="/details" element={<Details />} />
-            <Route path ="/simple" element={<Simple />} />
+            
            
 
 

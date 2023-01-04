@@ -220,9 +220,9 @@ const ProductManagement = (props) => {
                 <td className="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static hover:cursor">
                   <span className="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Product</span>
 
-                  <span className="rounded bg-red-400 py-1 px-3 text-xs font-bold "
+                  {/* <span className="rounded bg-red-400 py-1 px-3 text-xs font-bold "
                   //  onClick={(e) => deleteHandler()} 
-                  >Edit</span>
+                  >Edit</span> */}
                   &nbsp;
                   &nbsp;
                   <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold cursor-pointer"

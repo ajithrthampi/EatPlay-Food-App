@@ -8,9 +8,7 @@ import { MdProductionQuantityLimits } from "react-icons/md"
 import { MdOutlineCategory } from "react-icons/md"
 import { BsBorderAll } from "react-icons/bs"
 import { RiCoupon2Line } from "react-icons/ri"
-import { MdPayment } from "react-icons/md"
-import { MdOutlineLocalOffer } from "react-icons/md"
-import { FiLogOut } from "react-icons/fi"
+
 import { AiOutlineCaretDown }  from "react-icons/ai"
 
 

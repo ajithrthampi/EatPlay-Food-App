@@ -107,7 +107,6 @@ const Signup = () => {
   // },[message])
  
 
-
   const googleLogin = async () => {
        const response = await signInWithPopup(firebaseAuth, provider)
        console.log(response);

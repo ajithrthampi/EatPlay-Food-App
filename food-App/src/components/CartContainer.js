@@ -69,10 +69,6 @@ const CartContainer = (item) => {
         // console.log("", uid);
     }, [])
 
-   
-    
-    
-
     // init service
     const db = getFirestore()
 
@@ -161,6 +157,11 @@ const CartContainer = (item) => {
             const docRef = doc(db, "userCart", Product.id);
             setDoc(docRef, Product).then(docRef => { // console.log("Number has been decreased succefully");
             })
+        } else if (Product.qty < 1) {
+            Product.qty = Product.qty - 1
+            Product.TotalProductPrice = Product.qty * Product.price;
+            Product.totprice=Product.qty * Product.price;
+            setTot(Product.TotalProductPrice)
         }
     }
     const clearCart = async() => {
@@ -268,7 +269,8 @@ const CartContainer = (item) => {
                         {/*  cart item */}
                         {
                         cartProducts && cartProducts.length > 0 && cartProducts.map((item) => (
-                            <CardDif cartProductIncrease={cartProductIncrease}
+                            <CardDif 
+                                cartProductIncrease={cartProductIncrease}
                                 CartProductDecrease={CartProductDecrease}
                                 Product={Product}
                                 key={
@@ -295,11 +297,11 @@ const CartContainer = (item) => {
                                 {totalPrice}</p>
                             {/* {console.log("here",TotalProductPrice)} */} </div>
                         <div className='w-full flex items-center justify-between'>
-                            <p className='text-gray-400 text-lg'>Delivery</p>
-                            <p className='text-gray-400 text-lg'>
-                                <span className='text-green-600'>
+                            {/* <p className='text-gray-400 text-lg'>Delivery</p> */}
+                            {/* <p className='text-gray-400 text-lg'> */}
+                                {/* <span className='text-green-600'>
                                     $</span>
-                                2</p>
+                                2</p> */}
                         </div>
 
                         <div className='w-full border-b border-gray-600 my-2'></div>
@@ -308,7 +310,7 @@ const CartContainer = (item) => {
                             <p className='text-gray-200 text-xl font-semibold'>Total</p>
                             <p className='text-gray-200 text-xl font-semibold'>
                                 <span className='text-green-600'>$</span>
-                                {totalPrice + 2} </p>
+                                {totalPrice } </p>
                         </div>
                         <motion.button whiletap={
                                 {scale: 0.8}

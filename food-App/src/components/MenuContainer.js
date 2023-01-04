@@ -87,7 +87,7 @@ const MenuContainer = () => {
                             data={foodItems && foodItems?.filter(n => n.category === item)}
                             
                         />}
-                    {console.log("ffod",item)}
+                    {console.log("ffoddddddddddddddddd.........................",item)}
                     
                 </div> 
 

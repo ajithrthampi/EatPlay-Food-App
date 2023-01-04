@@ -56,6 +56,7 @@ const Login = () => {
   }
 
   console.log(getAuth().currentUser); 
+  console.log("React Tailwind");
 
   
   return (

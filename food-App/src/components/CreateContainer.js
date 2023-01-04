@@ -176,7 +176,10 @@ const CreateContainer = (props) => {
   useEffect(() => {
 
     getcategory();
-  }, [reducerValue])
+    
+  }, [state])
+
+
 
   const getcategory = async () => {
     const datat = await CategoryCollection.getAllCategory();
@@ -212,7 +215,6 @@ const CreateContainer = (props) => {
               </motion.p>
 
             )}
-
 
           {/* <button
                     className="p-1 ml-auto  border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"

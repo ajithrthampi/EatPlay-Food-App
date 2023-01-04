@@ -10,6 +10,7 @@ import { deleteDoc, doc } from 'firebase/firestore'
 import { db } from '../firebase'
 import userEvent from '@testing-library/user-event'
 import { useUserAuth } from '../context/UserAuthContext'
+import ProductCollection from '../Collections/ProductCollection'
 
 
 let items = [];
@@ -19,10 +20,20 @@ const CardDif = ({ item, setFlag, flag, cartProductIncrease, CartProductDecrease
     const [qty, setQty] = useState(item.qty);
     const [{ cartItems }, dispatch] = useStateValue();
     const { user } = useUserAuth();
+    const [foodItems, setFoodItems] = useState([])
     const [reducerValue, forceUpdate] = useReducer(x => x + 1, 0)
     
     // const [uid, setUid] = useState("")
-   
+   useEffect(() => {
+      getProducts()
+    },[reducerValue])
+    
+  const getProducts = async () => {
+    const dataa = await ProductCollection.getAllProducts();
+    setFoodItems(dataa.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    console.log("get products", foodItems);
+  }
+  
     useEffect(() => {
       setQty(item.qty)
     },[
@@ -32,7 +43,7 @@ const CardDif = ({ item, setFlag, flag, cartProductIncrease, CartProductDecrease
     useEffect(() => {
       // setUid(user.uid)
       // console.log("UUUSSEERR", uid);
-    },[reducerValue])
+    },[])
     
     const cartDispatch = () => {
         localStorage.setItem("cartItems", JSON.stringify(items));
@@ -59,18 +70,20 @@ const CardDif = ({ item, setFlag, flag, cartProductIncrease, CartProductDecrease
           console.log("Document has been deleted succefully");
           // cartProduct()
          })
-
-        //  forceUpdate()
+         console.log("doc deleted ");
+         forceUpdate()
         
       }
 
    
   useEffect(() => {
     items = cartItems;
-  }, [qty, items]);
+  }, [qty, items, ]);
+
 
 
     return (
+      <>
         <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
         <img
           src={item?.imageAsset}
@@ -110,8 +123,20 @@ const CardDif = ({ item, setFlag, flag, cartProductIncrease, CartProductDecrease
           </motion.div>
         </div>
         
-        <div className='top-0 right-0 cursor-pointer text-white text-xs' onClick={ () =>handleCartProductDelete(doc.id)}>X</div>
+        <div 
+        // className='top-0 right-0 cursor-pointer text-xs text-white bg-green-500 border-spacing-2' 
+        className='  -top-0 -right-0 w-5 h-5 rounded-full bg-orange-400 flex items-center justify-center text-sm text-white cursor-pointer'
+        onClick={ (e) =>handleCartProductDelete(doc.id)}>X</div>
       </div>
+
+      <div className='hidden'> 
+      {foodItems?.map((doc) => {
+        <div key={doc.id} className=''>{doc.name} </div>
+      })}
+      {/* <h1 text>iuhuihigyguyguy iygh </h1> */}
+      
+      </div>
+      </>
     )
 }
 export default CardDif

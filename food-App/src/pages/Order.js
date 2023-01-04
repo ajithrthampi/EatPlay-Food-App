@@ -137,6 +137,10 @@ const Order = () => {
                                     {doc[1]?.name}
                                     <br/>
                                     {doc[2]?.name}
+                                    <br/>
+                                    {doc[3]?.name}
+                                    <br/>
+                                    {doc[4  ]?.name}
                                     
 
                                 </td>

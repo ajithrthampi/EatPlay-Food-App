@@ -243,7 +243,8 @@ const RowContainer = ({flag, data, scrollValue, addToCart}) => {
                             <span className='text-sm text-green-700'>$</span>
                             {
                             item ?. price
-                        } </p>
+                        } 
+                        </p>
                     </div>
 
                 </div>

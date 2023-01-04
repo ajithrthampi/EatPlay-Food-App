@@ -102,15 +102,17 @@ const userData = async () => {
                     {currentUser ?. map((doc, index) => {
                             return(
                                 
-                           
+                           <div>
                         <div className='flex'>
 
                             <img className='w-14 h-14  object-cover rounded-full'
                                 src={doc.imageUrl} 
                                 alt="logo"/>
-                            <div className='pl-5 py-2 capitalize text-xl text-gray-700'>{doc.name}</div>
-                            <div className='text-sm pt-9 mr-8'>{doc.email}</div>
+                            <div className='pl-5 py-2 capitalize text-xl text-gray-600'>{doc.name}</div>
+                            {/* <div className='text-sm pt-9 '>{doc.email}</div> */}
                         </div> 
+                        <div className='text-sm pl-16 font-extralight'>{doc.email}</div> 
+                        </div>
                          )
                         })
                     }   
@@ -283,7 +285,7 @@ const userData = async () => {
                                                                    {doc[3 ]?.name} */}
                                                                    
                                                                    </h3>
-                                                                <p className='text-sm'>1 item -
+                                                                <p className='text-sm'><span>{doc?.qty}</span> item -
                                                                     <span className=' text-green-500'>$</span>
                                                                     {doc?.price}
                                                                     </p>

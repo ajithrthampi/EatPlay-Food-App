@@ -69,13 +69,11 @@ const CheckOut = () => {
     let lastAmounts;
     const addACoupon = () => {
 
-        
-
         const initialPrice = totalPrice
         const couponedPrice = initialPrice * coupe / 100
-        console.log("couponedPrice Price....", couponedPrice);
+        console.log("couponedPrice Price....", parseInt(couponedPrice));
 
-        const lastAmount = initialPrice - couponedPrice
+        const lastAmount = initialPrice - parseInt(couponedPrice)
         console.log("lastAmount....", lastAmount);
         setState(lastAmount)
 
@@ -229,7 +227,7 @@ const CheckOut = () => {
                                             <div className='col-span-2'>
                                                 <div className='text-textColor text-sm space-y-4'>
                                                     <p>Total Price(items)</p>
-                                                    <p>Shipping fee</p>
+                                                    {/* <p>Shipping fee</p> */}
                                                     {/* // <p>Discount</p> */} 
                                                 </div>
 
@@ -243,10 +241,10 @@ const CheckOut = () => {
                                                         {
                                                         parseInt(totalPrice)
                                                     } </div>
-                                                   <div>
+                                                   {/* <div>
                                                         <span className='text-green-500 py-3'>$</span>
                                                         2
-                                                    </div>
+                                                    </div> */}
                                                   {/*    <div>
                                                         <span className='text-green-500'>$</span>
                                                         5
@@ -340,7 +338,7 @@ const CheckOut = () => {
                                                     shippingAddress
                                                     name='All Products'
                                                     amount={
-                                                        (coupe ? state : totalPrice + 2) * 100
+                                                        (coupe ? state : totalPrice) * 100
                                                     }
                                                     itemscart={cartProducts}></StripeCheckout>
                                             </div>

@@ -45,7 +45,7 @@ const Profilee = () => {
     const data = await SignupCollection.getAllUser()
     const userData = data?.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
     const fil = userData && userData?.filter(n => n.email === unId)
-   console.log("First filter", fil);
+    console.log("First filter", fil);
     console.log(userData, "Hello  ");
     setCurrentUser(fil)
     console.log("Hello");
@@ -73,7 +73,7 @@ const Profilee = () => {
       }, 1000)
 
     }, () => {
-      getDownloadURL(uploadTask.snapshot.ref).then(getDownloadURL => {
+      `getDownloadURL`(uploadTask.snapshot.ref).then(getDownloadURL => {
         const profileImage = getDownloadURL
         console.log("Hello There",profileImage);
         console.log(currentUser[0]?.id, "NEw Id");
@@ -120,7 +120,7 @@ const Profilee = () => {
       <Header />
 
       <div className='mt-14 md:mt-20 px-4 md:px-16 w-full py-4'>
-        {/* <hr className="my-1 h-px bg-gray-400 border-0 dark:bg-gray-900" /> */}
+        {/* <hr className="my-1 h-px bg-gray-400 border-0 dark:bg-gray-900" /> */}  
 
         <div className='flex gap-52 lg:place-content-center pl-7 md:pl-72'>
               <div className='text-textColor font-bold'><Link to="/profile">Profile</Link></div>
@@ -166,17 +166,7 @@ const Profilee = () => {
                   onChange={uploadImage}
                   className="w-0 h-0"
                 />
-                </div>
-
-                {/* <div className='w-[150px] h-[150px] mt-32 flex flex-col items-center
-                         justify-center gap-2 rounded-full '>
-              {currentUser&&currentUser.map((doc, index) => {
-                console.log("mmmmmmmmmmmmmmmm",doc.imageUrl);
-                    
-                    <img className='w-[100px]' src={doc ? doc.imageUrl: avatar11} alt="Profile-Image"/>
-               })}
-    
-                </div> */}                                               
+                </div>                                             
               </label>
 
             </div>
@@ -194,12 +184,7 @@ const Profilee = () => {
                       return (     
             <div key={doc.id} className='pl-3 flex'>
 
-              {/* <div>
-                <img className='w-[60px] mt-11   object-cover' src={avatar11} alt="logo" />
-                <button className='text-sm mt-3 border border-blue-400 rounded-lg px-5 py-1 '
-                 
-                >Edit</button>
-              </div> */}
+            
                      
                    
               <ul className='px-28 pt-10 '>

@@ -85,7 +85,7 @@ const MainContainer = () => {
             flag={true}
 
             // addToCart= {addToCart}
-            data={foodItems && foodItems?.filter(n => n.category === "Chicken")}
+            data={foodItems && foodItems?.filter(n => n.category === "Fruits")}
           />
         </section>
 

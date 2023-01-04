@@ -117,12 +117,12 @@ const handlePageClick = (event) => {
                   >Delete</span>
                   &nbsp;
                   &nbsp;
-                  <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold"
+                  {/* <span className="rounded bg-green-400 py-1 px-3 text-xs font-bold"
                   //  onClick={(e) => viewHandler(doc.id)} 
                    >
                     
                     View
-                    </span>
+                    </span> */}
                 </td>
               </tr>
 
